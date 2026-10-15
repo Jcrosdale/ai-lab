@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flashcards — Modal Example</title>
+  <link rel="stylesheet" href="modal.css">
+</head>
+<body class="app-grid">
+
+  <header class="site-header">
+    <h1>Flashcards</h1>
+  </header>
+
+  <main id="app-main" data-app-root class="main container">
+    <button class="btn primary" data-modal-open="newDeckModal">+ New Deck</button>
+    <p>Page content goes here. When the modal opens, this region will get aria-hidden="true".</p>
+  </main>
+
+  <!-- Accessible modal -->
+  <div id="newDeckModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal__overlay" data-modal-overlay>
+      <div class="modal__panel" role="document">
+        <header class="modal__header">
+          <h2 id="modal-title">Create new deck</h2>
+        </header>
+
+        <section class="modal__body">
+          <label for="deck-name">Deck name</label>
+          <input id="deck-name" type="text" />
+        </section>
+
+        <footer class="modal__footer">
+          <button class="btn" data-modal-close>Cancel</button>
+          <button class="btn primary">Create</button>
+        </footer>
+
+        <!-- optional close button for screen reader users -->
+        <button class="modal__close" aria-label="Close dialog" data-modal-close></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">© 2026 Flashcards</footer>
+
+  <script src="modal.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+/* Modal styles (minimal, responsive) */
+
+:root{
+  --overlay-bg: rgba(2,6,23,0.6);
+  --panel-bg: #fff;
+  --panel-radius: 12px;
+  --panel-padding: 1rem;
+  --shadow: 0 10px 30px rgba(2,6,23,0.25);
+  --max-width: 520px;
+}
+
+/* Hide elements marked hidden */
+[hidden] { display: none !important; }
+
+/* Modal root covers viewport */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overlay handled by .modal__overlay */
+}
+
+/* Overlay fills modal root */
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Panel */
+.modal__panel {
+  position: relative;
+  background: var(--panel-bg);
+  border-radius: var(--panel-radius);
+  padding: var(--panel-padding);
+  width: 100%;
+  max-width: var(--max-width);
+  box-shadow: var(--shadow);
+  z-index: 1;
+  outline: none; /* we'll provide focus styles separately */
+}
+
+/* Header / Body / Footer spacing */
+.modal__header { margin-bottom: .5rem; }
+.modal__body { margin-bottom: .75rem; }
+.modal__footer { display:flex; gap:.5rem; justify-content:flex-end; }
+
+/* Close button (top-right) - visually minimal */
+.modal__close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Simple responsive tweak */
+@media (max-width: 420px) {
+  .modal__panel { padding: .75rem; border-radius: 10px; }
+}
+
+/* Focus styles for interactive controls inside modal */
+/* Use :focus-visible to avoid showing on mouse click */
+:focus { outline: none; }
+:focus-visible {
+  box-shadow: 0 0 0 4px color-mix(in srgb, #0b72d9 24%, transparent);
+  border-radius: 6px;
+}
+
+/* Simple button look (re-use from app) */
+.btn {
+  padding: .4rem .75rem;
+  border-radius: 6px;
+  border: 1px solid #e6e6e9;
+  background: #fff;
+  cursor: pointer;
+}
+.btn.primary {
+  background: #0b72d9;
+  color: #fff;
+  border-color: #0b72d9;
+}
