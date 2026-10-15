@@ -25,18 +25,20 @@
   </nav>
 
   <main id="cards" class="main" role="main" aria-live="polite">
-    <section class="card" id="card" aria-roledescription="flashcard">
-      <div class="front" id="card-front">Front: term or question</div>
-      <div class="back" id="card-back" hidden>Back: definition or answer</div>
+  <section class="card" id="card" aria-roledescription="flashcard">
+    <div class="card__inner" tabindex="-1">
+      <div class="card__face card__front" data-face="front">Front: term or question</div>
+      <div class="card__face card__back" data-face="back">Back: definition or answer</div>
+    </div>
 
-      <div class="controls" aria-hidden="false">
-        <button id="flip" class="btn">Flip</button>
-        <button id="prev" class="btn">Previous</button>
-        <button id="next" class="btn">Next</button>
-        <button id="edit" class="btn">Edit</button>
-      </div>
-    </section>
-  </main>
+    <div class="controls">
+      <button class="btn" data-action="flip">Flip</button>
+      <button class="btn" data-action="prev">Previous</button>
+      <button class="btn" data-action="next">Next</button>
+      <button class="btn" data-action="create-card">New Card</button>
+    </div>
+  </section>
+</main>
 
   <footer id="footer" class="site-footer" role="contentinfo">
     <small>© 2026 Flashcards App</small>
