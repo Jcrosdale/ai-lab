@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Flashcards — Minimal</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="storage.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body class="app-grid">
@@ -14,16 +15,30 @@
 
   <nav id="decks" class="sidebar" aria-label="Decks" role="navigation">
     <div class="sidebar-top">
-      <button id="add-deck" class="btn primary">+ New Deck</button>
+      <button id="add-deck" class="btn primary" type="button">+ New Deck</button>
     </div>
 
-    <ul class="deck-list" role="listbox" aria-label="Available decks" tabindex="0">
+    <div class="sidebar-search">
+      <label for="card-search" class="visually-hidden">Search cards in selected deck</label>
+      <input id="card-search" type="search" placeholder="Search cards in deck..." aria-label="Search cards" aria-controls="cards" />
+      <div id="search-count" class="search-count" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <ul class="deck-list" role="listbox" aria-label="Available decks" tabindex="0" id="deck-list">
       <!-- Deck items rendered by app.js -->
     </ul>
+
+    <!-- Sidebar empty state (rendered by JS when no decks) -->
+    <div id="sidebar-empty" class="empty-state" role="region" aria-live="polite" hidden>
+      <!-- JS will insert icon + message -->
+    </div>
   </nav>
 
   <main id="cards" class="main container" role="main" aria-live="polite" data-app-root>
     <!-- Card area rendered by app.js -->
+    <div id="main-empty" class="empty-state" role="region" aria-live="polite" hidden>
+      <!-- JS will insert icon + message when no deck or no cards -->
+    </div>
   </main>
 
   <footer id="footer" class="site-footer" role="contentinfo">

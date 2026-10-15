@@ -68,6 +68,36 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   height: calc(100vh - 140px);
   overflow: auto;
 }
+/* Search input in sidebar */
+.sidebar-search {
+  margin: 0.5rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.sidebar-search input[type="search"] {
+  padding: .45rem .6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+/* Count and results */
+.search-count { font-size: .9rem; color: var(--muted); }
+.search-results {
+  margin-top: .5rem;
+}
+.search-results ul {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.search-results li {
+  padding: .5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.search-results li:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
 .main {
   padding: 1rem;
   display:flex;
