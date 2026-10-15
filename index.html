@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
-<body>
+<body class="app-grid">
   <header role="banner" class="site-header">
     <h1>Flashcards</h1>
   </header>
@@ -18,27 +18,13 @@
     </div>
 
     <ul class="deck-list" role="listbox" aria-label="Available decks" tabindex="0">
-      <li role="option" tabindex="-1" data-deck-id="1">Spanish — Basics</li>
-      <li role="option" tabindex="-1" data-deck-id="2">Chemistry — Elements</li>
-      <!-- Deck items will be populated here -->
+      <!-- Deck items are rendered by app.js -->
     </ul>
   </nav>
 
-  <main id="cards" class="main" role="main" aria-live="polite">
-  <section class="card" id="card" aria-roledescription="flashcard">
-    <div class="card__inner" tabindex="-1">
-      <div class="card__face card__front" data-face="front">Front: term or question</div>
-      <div class="card__face card__back" data-face="back">Back: definition or answer</div>
-    </div>
-
-    <div class="controls">
-      <button class="btn" data-action="flip">Flip</button>
-      <button class="btn" data-action="prev">Previous</button>
-      <button class="btn" data-action="next">Next</button>
-      <button class="btn" data-action="create-card">New Card</button>
-    </div>
-  </section>
-</main>
+  <main id="cards" class="main container" role="main" aria-live="polite" data-app-root>
+    <!-- Card area rendered by app.js -->
+  </main>
 
   <footer id="footer" class="site-footer" role="contentinfo">
     <small>© 2026 Flashcards App</small>
