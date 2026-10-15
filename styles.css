@@ -1,12 +1,10 @@
-/* Base tokens + responsive grid + 3D card flip + small components */
+/* Base tokens + responsive grid + 3D card flip + study overlay */
 
 /* Design tokens */
 :root{
   --sidebar-width: 280px;
   --gap: 1rem;
   --radius-sm: 8px;
-
-  /* Light mode colors */
   --bg: #ffffff;
   --surface: #f7f9fb;
   --text: #0f1724;
@@ -17,7 +15,7 @@
   --focus-ring: color-mix(in srgb, var(--accent) 24%, #0000);
 }
 
-/* Dark mode overrides */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root{
     --bg: #0b1220;
@@ -35,10 +33,9 @@
 *,
 *::before,
 *::after { box-sizing: border-box; }
-
 html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; background:var(--bg); color:var(--text); }
 
-/* App grid with named areas */
+/* Grid layout (fixed-width sidebar, fluid main) */
 .app-grid {
   min-height:100vh;
   display: grid;
@@ -52,13 +49,11 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   padding: var(--gap);
 }
 
-/* Regions */
 .site-header { grid-area: header; }
 .sidebar     { grid-area: sidebar; width: var(--sidebar-width); }
 .main        { grid-area: main; }
 .site-footer { grid-area: footer; }
 
-/* Visual basics */
 .site-header {
   background: linear-gradient(90deg, var(--accent), var(--accent-700));
   color: #fff;
@@ -85,7 +80,7 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   color:var(--muted);
 }
 
-/* Buttons / links */
+/* Buttons / focus */
 .btn, button, .link {
   display:inline-flex;
   align-items:center;
@@ -99,14 +94,9 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   text-decoration:none;
   transition: transform 120ms ease, box-shadow 120ms ease;
 }
-.btn.primary {
-  background: var(--accent);
-  color: #fff;
-  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-}
-.btn:hover, .link:hover { transform: translateY(-1px); }
+.btn.primary { background: var(--accent); color:#fff; border-color: color-mix(in srgb, var(--accent) 60%, transparent); }
+.btn:hover { transform: translateY(-1px); }
 
-/* Focus styles */
 :focus { outline: none; }
 :focus-visible, button:focus-visible, .btn:focus-visible, a:focus-visible {
   outline: none;
@@ -114,19 +104,16 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   border-radius: 6px;
 }
 
-/* Utility: selected deck */
+/* Utility selected */
 .deck-list .selected {
   background: color-mix(in srgb, var(--accent) 12%, transparent);
   border-color: color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
-/* Ensure main content is fluid */
-.main > * {
-  width: 100%;
-  max-width: 920px;
-}
+/* Fluid main child */
+.main > * { width: 100%; max-width: 920px; }
 
-/* Responsive: collapse to single column on narrow screens */
+/* Responsive */
 @media (max-width: 900px) {
   .app-grid {
     grid-template-columns: 1fr;
@@ -138,19 +125,14 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
       "footer";
     padding: .75rem;
   }
-  .sidebar {
-    width: 100%;
-    height: auto;
-    order: 3;
-    margin-top: .5rem;
-  }
+  .sidebar { width:100%; height:auto; order:3; margin-top:.5rem; }
 }
 
-/* =========================
+/* ---------------------------
    Card 3D flip styles
-   ========================= */
+   --------------------------- */
 
-/* Ensure the card has perspective */
+/* Perspective on card container */
 .card {
   width: 100%;
   max-width: 760px;
@@ -158,7 +140,7 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   perspective: 1200px;
 }
 
-/* The inner wrapper is the 3D element that rotates */
+/* Inner 3D element */
 .card__inner {
   position: relative;
   width: 100%;
@@ -170,7 +152,7 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   background: transparent;
 }
 
-/* Faces (front/back) */
+/* Faces */
 .card__face {
   position: absolute;
   inset: 0;
@@ -185,27 +167,42 @@ html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system,
   border: 1px solid var(--border);
   color: var(--text);
 }
-
-/* Front/back transforms */
 .card__front { transform: rotateY(0deg); }
 .card__back  { transform: rotateY(180deg); position: absolute; }
 
-/* Toggle state: apply rotation to inner wrapper */
+/* Toggle */
 .card.is-flipped .card__inner { transform: rotateY(180deg); }
+.card.is-flipped .card__inner, .card__inner:active { transition-duration: 420ms; }
 
-/* A subtle pressed/active effect while flipping */
-.card.is-flipped .card__inner,
-.card__inner:active { transition-duration: 420ms; }
+.controls { margin-top:1rem; display:flex; gap:.5rem; flex-wrap:wrap; }
 
-/* Controls spacing */
-.controls {
-  margin-top: 1rem;
-  display: flex;
-  gap: .5rem;
-  flex-wrap: wrap;
-}
-
-/* Small responsive tweak for card faces */
 @media (max-width: 640px) {
   .card__face { padding: 1rem; font-size: 0.98rem; }
 }
+
+/* ---------------------------
+   Study overlay
+   --------------------------- */
+.study-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.6);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.study-panel {
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 1rem;
+  width: min(880px, 96%);
+  box-shadow: 0 12px 40px rgba(2,6,23,0.45);
+  outline: none;
+}
+.study-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem; }
+.study-card-wrap { display:flex; justify-content:center; margin:.5rem 0; }
+.study-controls { display:flex; gap:.5rem; justify-content:center; margin-top:.5rem; }
+.study-footer { margin-top:.5rem; text-align:center; color:var(--muted); }
