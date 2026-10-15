@@ -1,13 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding with AI</title>
-    <link href="styles.css" rel="stylesheet">
-    <script defer src="app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcards — Minimal</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+  <header role="banner" class="site-header">
+    <h1>Flashcards</h1>
+  </header>
+
+  <nav id="decks" class="sidebar" aria-label="Decks" role="navigation">
+    <div class="sidebar-top">
+      <button id="add-deck" class="btn primary">+ New Deck</button>
+    </div>
+
+    <ul class="deck-list" role="listbox" aria-label="Available decks" tabindex="0">
+      <li role="option" tabindex="-1" data-deck-id="1">Spanish — Basics</li>
+      <li role="option" tabindex="-1" data-deck-id="2">Chemistry — Elements</li>
+      <!-- Deck items will be populated here -->
+    </ul>
+  </nav>
+
+  <main id="cards" class="main" role="main" aria-live="polite">
+    <section class="card" id="card" aria-roledescription="flashcard">
+      <div class="front" id="card-front">Front: term or question</div>
+      <div class="back" id="card-back" hidden>Back: definition or answer</div>
+
+      <div class="controls" aria-hidden="false">
+        <button id="flip" class="btn">Flip</button>
+        <button id="prev" class="btn">Previous</button>
+        <button id="next" class="btn">Next</button>
+        <button id="edit" class="btn">Edit</button>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="site-footer" role="contentinfo">
+    <small>© 2026 Flashcards App</small>
+  </footer>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
